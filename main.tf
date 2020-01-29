@@ -65,19 +65,3 @@ resource "aws_subnet" "vpc_private_subnet" {
    Name = var.name
   }
 }
-
-# Route table for private subnet
-resource "aws_route_table" "vpc_route_private" {
-  vpc_id = aws_vpc.two_tier_vpc.id
-
-  tags = {
-    Name = "${var.name} - route table private"
-  }
-}
-
-
-# Private Route table associations
-resource "aws_route_table_association" "vpc_assoc_private" {
-  subnet_id      = aws_subnet.vpc_private_subnet.id
-  route_table_id = aws_route_table.vpc_route_private.id
-}
